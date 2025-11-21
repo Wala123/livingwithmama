@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block main %}
+<div class="container" style="max-width: 700px;">
+    <div class="text-center mb-5">
+        <h2>🧠 The Homemaker Trivia</h2>
+        <p>Prove your domestic knowledge!</p>
+    </div>
+
+    <form action="/quiz" method="post" class="card card-custom p-4">
+        
+        <div class="mb-4">
+            <label class="fw-bold mb-2">1. How often should you flip/rotate your mattress?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q1" value="1month">
+                <label class="form-check-label">Every month</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q1" value="6months">
+                <label class="form-check-label">Every 6 months</label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="fw-bold mb-2">2. What is a "Magic Eraser" mostly made of?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q2" value="bleach">
+                <label class="form-check-label">Bleach</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q2" value="cleaning">
+                <label class="form-check-label">Melamine Foam</label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="fw-bold mb-2">3. Which plant is best for soothing kitchen burns?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q3" value="burns">
+                <label class="form-check-label">Aloe Vera</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q3" value="cactus">
+                <label class="form-check-label">Cactus</label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="fw-bold mb-2">4. What should you NEVER use on a Cast Iron Skillet?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q4" value="oil">
+                <label class="form-check-label">Oil</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q4" value="nosoap">
+                <label class="form-check-label">Harsh Soap/Dishwasher</label>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="fw-bold mb-2">5. The key to a peaceful home is...</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q5" value="comm">
+                <label class="form-check-label">Communication & Love</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="q5" value="wifi">
+                <label class="form-check-label">Fast Wi-Fi</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary-custom w-100">Submit Answers</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<div class="text-center py-5">
+    <h1 class="display-4 fw-bold" style="color: var(--primary);">Welcome Home</h1>
+    <p class="lead text-muted">Your digital sanctuary for peace, comfort, and family togetherness.</p>
+    <hr class="my-4">
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card card-custom h-100 p-4">
+                <h3>🛍️ The Market</h3>
+                <p>Discover family side-hustles and home treasures.</p>
+                <a href="/market" class="btn btn-primary-custom mt-auto">Shop Now</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-custom h-100 p-4">
+                <h3>🧩 Family Quiz</h3>
+                <p>Who is the ultimate homemaker? Test your knowledge!</p>
+                <a href="/quiz" class="btn btn-primary-custom mt-auto">Play Now</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-custom h-100 p-4">
+                <h3>💡 Inspiration</h3>
+                <p>Recipes, design tips, and peace for your living space.</p>
+                <a href="/inspiration" class="btn btn-primary-custom mt-auto">Get Inspired</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
