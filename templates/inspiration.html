@@ -2,31 +2,98 @@
 {% block title %}Inspiration{% endblock %}
 {% block main %}
 <h2 class="text-center mb-5">Ideas for a Peaceful Home</h2>
+
 <div class="row g-4">
+
+    <!-- Sunday Roast (now chicken) -->
     <div class="col-md-4">
-        <div class="card card-custom">
-            <img src="https://placehold.co/600x400/CCD5AE/333?text=Sunday+Roast" class="card-img-top">
-            <div class="card-body">
-                <h5>Mama's Sunday Roast</h5>
-                <p>Slow cooked for 6 hours. The secret is adding rosemary early.</p>
+        <div class="card card-custom h-100 overflow-hidden border-0 shadow">
+            <img src="{{ url_for('static', filename='images/inspiration/sundayroast.jpg') }}" 
+                 class="card-img-top" alt="Sunday Roast" style="height: 280px; object-fit: cover;">
+            <div class="card-body text-center">
+                <div class="mb-2">
+                    <span class="badge bg-orange text-white me-1">#Recipes</span>
+                    <span class="badge bg-camel text-white me-1">#Family</span>
+                    <span class="badge bg-laurel text-white">#Tradition</span>
+                </div>
+                <h5 class="card-title mt-3">Mama's Sunday Roast</h5>
+                
+                <p class="card-text small text-muted">
+                    Every Sunday the house fills with the smell of golden roasted chicken, fresh rosemary, and pure love...
+                    <span class="collapse" id="roastMore">
+                        <br><br>
+                        We rub it with butter and garlic, tuck rosemary under the skin, and let it roast slowly until the skin is crispy and the meat falls off the bone.
+                        The secret? A splash of lemon in the pan and letting it rest before carving.
+                        The gravy is made from those glorious drippings — the reason everyone fights for the last spoonful.
+                        This isn’t just dinner. It’s family gathered, plates piled high, and hearts full.
+                    </span>
+                    <a class="text-decoration-none small fw-bold text-orange" 
+                       data-bs-toggle="collapse" href="#roastMore" role="button">
+                        Read more ↓
+                    </a>
+                </p>
             </div>
         </div>
     </div>
+
+    <!-- Declutter -->
     <div class="col-md-4">
-        <div class="card card-custom">
-            <img src="https://placehold.co/600x400/FAEDCD/333?text=Declutter" class="card-img-top">
-            <div class="card-body">
-                <h5>Decluttering 101</h5>
-                <p>If you haven't used it in a year, donate it. Clear space, clear mind.</p>
+        <div class="card card-custom h-100 overflow-hidden border-0 shadow">
+            <img src="{{ url_for('static', filename='images/inspiration/declutter.jpg') }}" 
+                 class="card-img-top" alt="Declutter" style="height: 280px; object-fit: cover;">
+            <div class="card-body text-center">
+                <div class="mb-2">
+                    <span class="badge bg-laurel text-white me-1">#Organization</span>
+                    <span class="badge bg-olive text-white me-1">#Peace</span>
+                    <span class="badge bg-camel text-white">#MindfulLiving</span>
+                </div>
+                <h5 class="card-title mt-3">Decluttering 101</h5>
+                
+                <p class="card-text small text-muted">
+                    A peaceful home begins with letting go. If you haven’t touched it in a year...
+                    <span class="collapse" id="declutterMore">
+                        <br><br>
+                        ...it’s probably someone else’s treasure waiting to be loved again.
+                        We don’t chase empty shelves — we chase breathing room for joy.
+                        One drawer, one closet, one “thank you, next” at a time.
+                        The magic isn’t in the space you create — it’s in the calm that moves in to stay.
+                    </span>
+                    <a class="text-decoration-none small fw-bold text-orange" 
+                       data-bs-toggle="collapse" href="#declutterMore" role="button">
+                        Read more ↓
+                    </a>
+                </p>
             </div>
         </div>
     </div>
+
+    <!-- Snake Plant -->
     <div class="col-md-4">
-        <div class="card card-custom">
-            <img src="https://placehold.co/600x400/D4A373/333?text=Gardening" class="card-img-top">
-            <div class="card-body">
-                <h5>Indoor Plants</h5>
-                <p>Snake plants purify the air and are almost impossible to kill.</p>
+        <div class="card card-custom h-100 overflow-hidden border-0 shadow">
+            <img src="{{ url_for('static', filename='images/inspiration/snakeplant.jpg') }}" 
+                 class="card-img-top" alt="Indoor Plants" style="height: 280px; object-fit: cover;">
+            <div class="card-body text-center">
+                <div class="mb-2">
+                    <span class="badge bg-olive text-white me-1">#PlantCare</span>
+                    <span class="badge bg-laurel text-white me-1">#GreenHome</span>
+                    <span class="badge bg-orange text-white">#AirPurifier</span>
+                </div>
+                <h5 class="card-title mt-3">Indoor Plants</h5>
+                
+                <p class="card-text small text-muted">
+                    Meet the snake plant — the toughest, most forgiving friend your home will ever have...
+                    <span class="collapse" id="plantMore">
+                        <br><br>
+                        It cleans your air while you sleep, survives weeks without water, and thrives in corners you forgot existed.
+                        Perfect for busy mamas, dark rooms, and “I kill everything” plant parents.
+                        One leaf can change the whole energy of a space.
+                        Start with one. Watch it grow. Watch yourself grow with it.
+                    </span>
+                    <a class="text-decoration-none small fw-bold text-orange" 
+                       data-bs-toggle="collapse" href="#plantMore" role="button">
+                        Read more ↓
+                    </a>
+                </p>
             </div>
         </div>
     </div>

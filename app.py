@@ -66,7 +66,7 @@ def login():
             return apology("Invalid username/password")
         
         session["user_id"] = rows[0]["id"]
-        session["username"] = rows[0]["username"] # Store name for display
+        session["username"] = rows[0]["username"]
         return redirect("/")
     return render_template("login.html")
 
@@ -116,25 +116,41 @@ def quiz():
     """The Homemaker Quiz"""
     if request.method == "POST":
         score = 0
-        # Simple Logic: 20 points per correct answer
-        # Q1: Flip Mattress -> 6 months
-        if request.form.get("q1") == "6months": score += 20
-        # Q2: Baking Soda -> Cleaning
-        if request.form.get("q2") == "cleaning": score += 20
-        # Q3: Aloe Vera -> Burns
-        if request.form.get("q3") == "burns": score += 20
-        # Q4: Cast Iron -> No Soap
-        if request.form.get("q4") == "nosoap": score += 20
-        # Q5: Peace -> Communication
-        if request.form.get("q5") == "comm": score += 20
+        results_log = [] # We will store Right/Wrong here
+        
+        # MASTER KEY
+        answers = {
+            "q1": "6months",   "q2": "cleaning",  "q3": "burns",     "q4": "nosoap",
+            "q5": "comm",      "q6": "cool",      "q7": "oil",       "q8": "salt",
+            "q9": "declutter", "q10": "weekly",   "q11": "baking",   "q12": "38f",
+            "q13": "ice",      "q14": "dryer",    "q15": "fridge",   "q16": "qtip",
+            "q17": "baking",   "q18": "vinegar",  "q19": "out",      "q20": "love"
+        }
 
-        # Save to DB
+        # Check answers
+        for key, user_answer in request.form.items():
+            if key in answers:
+                correct_answer = answers[key]
+                is_correct = (user_answer == correct_answer)
+                
+                if is_correct:
+                    score += 20
+                    status = "✅ Correct"
+                else:
+                    status = "❌ Incorrect"
+                
+                # Add to report log
+                # 'key' is something like 'q1', we make it 'Question 1'
+                q_num = key.replace('q', 'Question ')
+                results_log.append({"question": q_num, "status": status})
+        
+        # Save score to DB
         db.execute("INSERT INTO quiz_scores (user_id, score) VALUES (?, ?)", session["user_id"], score)
         
-        # Get message based on score
-        msg = "You are a Home Expert!" if score >= 80 else "Good start, keep learning!"
+        msg = "You are a Home Expert!" if score >= 80 else "Keep learning from Mama!"
         
-        return render_template("quiz_result.html", score=score, msg=msg)
+        # Pass the 'results_log' to the HTML
+        return render_template("quiz_result.html", score=score, msg=msg, results=results_log)
     
     return render_template("quiz.html")
 
@@ -142,5 +158,16 @@ def quiz():
 
 @app.route("/inspiration")
 def inspiration():
-    """Static Inspiration Page"""
     return render_template("inspiration.html")
+
+@app.route("/market/delete/<int:item_id>", methods=["POST"])
+@login_required
+def delete_item(item_id):
+    """Delete an item (only owner can do this)"""
+    item = db.execute("SELECT * FROM market_items WHERE id = ?", item_id)
+    if not item or item[0]["user_id"] != session["user_id"]:
+        return apology("Item not found or not yours", 403)
+    
+    db.execute("DELETE FROM market_items WHERE id = ?", item_id)
+    flash("Item deleted successfully!")
+    return redirect("/market")

@@ -3,31 +3,42 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/static/styles.css" rel="stylesheet">
-        <link rel="icon" type="image/png" href="/static/images/logo.png">
+
+        <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+
         <title>Living With Mama: {% block title %}{% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        
+        <nav class="navbar navbar-expand-lg navbar-custom navbar-dark">
             <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="/static/images/logo.png" alt="🏠" height="30" class="d-inline-block align-text-top me-2">
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" height="70" class="d-inline-block align-text-top me-2">
                     Living With Mama
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-center">
                         {% if session["user_id"] %}
                             <li class="nav-item"><a class="nav-link" href="/market">Market</a></li>
                             <li class="nav-item"><a class="nav-link" href="/quiz">Quiz</a></li>
                             <li class="nav-item"><a class="nav-link" href="/inspiration">Inspiration</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                            <li class="nav-item ms-lg-3"><a class="nav-link btn btn-outline-light btn-sm px-4 text-white" href="/logout">Log Out</a></li>
                         {% else %}
                             <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                            <li class="nav-item ms-lg-2"><a class="nav-link btn btn-primary-custom btn-sm" href="/login">Log In</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -35,8 +46,10 @@
         </nav>
 
         {% if get_flashed_messages() %}
-            <div class="container mt-3">
-                <div class="alert alert-success text-center">{{ get_flashed_messages() | join(" ") }}</div>
+            <div class="container mt-4">
+                <div class="alert alert-success text-center shadow-sm" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
             </div>
         {% endif %}
 
@@ -44,11 +57,25 @@
             {% block main %}{% endblock %}
         </main>
 
-        <footer class="text-center">
+        <footer class="text-center mt-auto">
             <div class="container">
-                <small>&copy; 2025 Living With Mama - Selling Peace & Comfort</small>
+                <small>&copy; 2025 Living With Mama &bull; Peace in the Chaos</small>
             </div>
         </footer>
+        <div id="custom-toast">Notification</div>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/script.js"></script>
+        <script>
+        document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const target = document.querySelector(this.getAttribute('href'));
+                const isCollapsed = target.classList.contains('show');
+                setTimeout(() => {
+                    this.textContent = isCollapsed ? 'Read more ↓' : 'Show less ↑';
+                }, 10);
+            });
+        });
+        </script>
     </body>
 </html>
