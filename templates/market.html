@@ -4,7 +4,7 @@
 
 {% block main %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Family Market</h2>
+    <h2 class="mb-4 title-orange">Family Market</h2>
     <a href="/market/sell" class="btn btn-primary-custom">➕ Sell Item</a>
 </div>
 
@@ -39,12 +39,33 @@
                     </button>
 
                     {% if item.user_id == session.user_id %}
-                    <form action="/market/delete/{{ item.id }}" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-danger btn-sm w-100"
-                                onclick="return confirm('Are you sure you want to delete \"{{ item.title }}\"? This cannot be undone.')">
-                            🗑️ Delete Item
-                        </button>
-                    </form>
+                    <button type="button" class="btn btn-danger btn-sm w-100" data-bs-toggle="modal" data-bs-target="#deleteModal{{ item.id }}">
+                        Delete Item
+                    </button>
+
+                    <!-- Modal for this specific item -->
+                    <div class="modal fade" id="deleteModal{{ item.id }}" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title text-danger">Remove "{{ item.title }}"?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p class="text-muted mb-3">Why are you removing this?</p>
+                            <form action="/market/delete/{{ item.id }}" method="post">
+                            <div class="d-grid gap-2">
+                                <button type="submit" name="reason" value="sold" class="btn btn-outline-success">Sold!</button>
+                                <button type="submit" name="reason" value="outofstock" class="btn btn-outline-warning">Out of stock</button>
+                                <button type="submit" name="reason" value="changedmind" class="btn btn-outline-secondary">Changed my mind</button>
+                                <button type="submit" name="reason" value="expired" class="btn btn-outline-danger">Offer expired</button>
+                            </div>
+                            <button type="button" class="btn btn-link text-muted mt-3" data-bs-dismiss="modal">Cancel</button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                     {% endif %}
                 </div>
             </div>
