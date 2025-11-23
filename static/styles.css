@@ -189,9 +189,9 @@ footer {
 
 /* --- 8. FIXES & ALERTS --- */
 
-/* THE MODAL BEING EATEN BY CARDS */
+/* THE MODAL POP UP */
 .modal {
-    position: fixed;        /* This is the ONLY thing that matters */
+    position: fixed;        
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -243,7 +243,7 @@ footer {
     background-size: cover !important;     /* ← forces full cover */
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.22;                          /* ← now safe to go higher (0.20–0.28 looks perfect) */
+    opacity: 0.22;                          
     z-index: 1;                             /* behind everything */
     pointer-events: none;
 }
